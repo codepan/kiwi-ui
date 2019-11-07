@@ -1,0 +1,67 @@
+//Color
+$color-dark: #000;
+$color-light:#fff;
+$color-stable: #e8e8e8;
+$color-primary: #2d8cf0;
+$color-info: #50bfff;
+$color-success: #65ccaf;
+$color-warning: #f7ba2a;
+$color-danger: #ff4949;
+$color-lively: #ff7800;
+$color-royal: #8a6de9;
+
+//Base
+$title-color: #17233d;
+$content-color: #515a6e;
+$subtitle-color: #808695;
+$bg-color: #f8f8f8;
+$font-size: 14px;
+$font-size-small: 12px;
+$font-size-large: 16px;
+$disabled-color: #c0c4cc;
+$disabled-bg-color: #f5f7fa;
+
+//Border
+$border-color: #dcdee2;
+//List
+$item-height: 44px;
+$item-border-color: #e8e8e8;
+$item-active-bg-color: #f2f2f2;
+
+// Input
+$input-placeholder-color: #c5c8ce;
+$form-label-color: #333;
+
+//Input Number
+$input-number-size: 30px;
+$input-number-size-small: 25px;
+$input-number-size-large: 35px;
+
+// Button
+$button-active-mix-weight: 10%;
+
+// layout
+$bar-height: 50px;
+
+//Tabs
+$tab-height: 36px;
+$tab-height-large: 46px;
+
+// Spinner
+$spinner-color: #ccc;
+$spinner-size-mini: 14px;
+$spinner-size-small: 20px;
+$spinner-size-default: 26px;
+$spinner-size-large: 32px;
+// system
+$system-colors: (
+  light: $color-light,
+  stable: $color-stable,
+  primary: $color-primary,
+  info: $color-info,
+  success: $color-success,
+  warning: $color-warning,
+  danger: $color-danger,
+  lively: $color-lively,
+  royal: $color-royal
+);

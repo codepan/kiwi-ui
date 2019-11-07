@@ -1,0 +1,168 @@
+@mixin spinner-colors {
+  @each $key, $value in $system-colors {
+    &.color-#{$key} {
+      &.type-snow .item {
+        background: linear-gradient($value 30%, transparent 31.01%, transparent 70%, $value 0.01%, $value 100%);
+      }
+      &.type-snake {
+        border-color: $value;
+      }
+      &.type-ring-circle {
+        border-color: $value;
+        &::before {
+          background: $value;
+        }
+      }
+      &.type-triple-bounce .item {
+        background: $value;
+      }
+    }
+  }
+  &.color-content {
+    &.type-snow .item {
+      background: linear-gradient($content-color 30%, transparent 31.01%, transparent 70%, $content-color 0.01%, $content-color 100%);
+    }
+    &.type-snake {
+      border-color: $content-color;
+    }
+  }
+}
+
+@mixin spinner-types {
+  &.type-snow {
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    animation: rotate 2s linear infinite;
+    width: $spinner-size-default;
+    height: $spinner-size-default;
+    .item {
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient($spinner-color 30%, transparent 31.01%, transparent 70%, $spinner-color 0.01%, $spinner-color 100%);
+      &:nth-child(1) {
+        transform: rotate(0deg);
+      }
+      &:nth-child(2) {
+        transform: rotate(45deg);
+      }
+      &:nth-child(3) {
+        transform: rotate(90deg);
+      }
+      &:nth-child(4) {
+        transform: rotate(135deg);
+      }
+    }
+    @keyframes rotate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  &.type-snake{
+    width: $spinner-size-default;
+    height: $spinner-size-default;
+    border-radius: 50%;
+    border: 3px solid $spinner-color;
+    border-left-color: transparent !important;
+    animation: rotate 1s infinite linear;
+    @keyframes rotate {
+      from {
+        transform: rotate3d(0, 0, 0, 0deg);
+      }
+      to {
+        transform: rotate3d(0, 0, 1, 360deg);
+      }
+    }
+  }
+  &.type-ring-circle {
+    width: $spinner-size-default;
+    height: $spinner-size-default;
+    border: 2px solid $spinner-color;
+    border-radius: 50%;
+    background: transparent;
+    position: relative;
+    animation: turn 2s linear infinite;
+    &::before {
+      content: '';
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $spinner-color;
+    }
+    @keyframes turn {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+  &.type-triple-bounce {
+    &.size-mini .item{
+      width: $spinner-size-mini - 6;
+      height: $spinner-size-mini - 6; 
+    }
+    &.size-small .item{
+      width: $spinner-size-small - 6;
+      height: $spinner-size-small - 6; 
+    }
+    &.size-large .item{
+      width: $spinner-size-large - 6;
+      height: $spinner-size-large - 6; 
+    }
+    .item {
+      width: $spinner-size-default - 6;
+      height: $spinner-size-default - 6;
+      border-radius: 50%;
+      background: $spinner-color;
+      &:not(:last-child) {
+        margin-right: 6px;
+      }
+      &:nth-child(1) {
+        animation: zoom 1.4s linear -0.32s infinite
+      }
+      &:nth-child(2) {
+        animation: zoom 1.4s linear -0.16s infinite
+      }
+      &:nth-child(3) {
+        animation: zoom 1.4s linear infinite
+      }
+      @keyframes zoom {
+        0% {
+          transform: scale(0)
+        }
+        25% {
+          transform: scale(0.5)
+        }
+        50% {
+          transform: scale(1)
+        }
+        75% {
+          transform: scale(0.5)
+        }
+        100% {
+          transform: scale(0)
+        }
+      }
+    }
+  }
+  &.size-mini:not(.type-triple-bounce) {
+    width: $spinner-size-mini;
+    height: $spinner-size-mini;
+  }
+  &.size-small:not(.type-triple-bounce) {
+    width: $spinner-size-small;
+    height: $spinner-size-small;
+  }
+  &.size-large:not(.type-triple-bounce) {
+    width: $spinner-size-large;
+    height: $spinner-size-large;
+  }
+}

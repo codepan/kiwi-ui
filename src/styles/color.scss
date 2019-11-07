@@ -1,0 +1,11 @@
+@each $key, $value in $system-colors {
+  .kw-#{$key}-text-color {
+    color: $value;
+  }
+  .kw-#{$key}-bg-color {
+    background-color: $value;
+  }
+  .kw-#{$key}-border-color {
+    border-color: $value;
+  }
+}

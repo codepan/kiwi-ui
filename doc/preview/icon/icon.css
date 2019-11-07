@@ -1,0 +1,7 @@
+.kw-grid-item {
+  text-align: center;
+}
+.kw-grid-item .icon-name {
+    user-select: all !important;
+}
+

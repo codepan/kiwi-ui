@@ -1,0 +1,83 @@
+// Button
+@mixin button-size($size: '') {
+  @if($size == '') {
+    height: 36px;
+    min-width: 70px;
+  }
+  @if ($size == small) {
+    height: 30px;
+    min-width: 66px;
+  }
+  @if ($size == large) {
+    height: 40px;
+    min-width: 95px;
+  }
+}
+
+$border-positions: top, right, bottom, left;
+
+@mixin border-1px($color: $border-color, $radius: 0, $style: solid) {
+  position: relative;
+  &::after {
+    content: "";
+    pointer-events: none; // 解决iphone上的点击无效Bug
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform-origin: 0 0;
+    border: 1px $style $color;
+    border-radius: $radius;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+      width: 200%;
+      height: 200%;
+      border-radius: $radius * 2;
+      transform: scale(.5) translateZ(0);
+    }
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+      width: 300%;
+      height: 300%;
+      border-radius: $radius * 3;
+      transform: scale(.33333333333) translateZ(0);
+    }
+  }
+}
+
+@mixin border-1px-with-position($color: $border-color, $positions: $border-positions, $style: solid) {
+  position: relative;
+  &::after {
+    content: "";
+    pointer-events: none; // 解决iphone上的点击无效Bug
+    display: block;
+    position: absolute;
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    @if (type-of($positions) == list) {
+      @each $pos in $positions {
+        border-#{$pos}: 1px $style $color;
+      }
+    }
+
+    @if (type-of($positions) == string) {
+      border-#{$positions}: 1px $style $color;
+    }
+
+    @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+      width: 200%;
+      height: 200%;
+      transform: scale(.5) translateZ(0);
+    }
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+      width: 300%;
+      height: 300%;
+      transform: scale(.33333333333) translateZ(0);
+    }
+  }
+}
