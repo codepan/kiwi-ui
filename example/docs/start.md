@@ -18,7 +18,7 @@ yarn add @codepan/kiwi-ui
 ```js
 import Vue from 'vue'
 import KiwiUI from '@codepan/kiwi-ui'
-import '@codepan/kiwi-ui/lib/style.css'
+import '@codepan/kiwi-ui/lib/theme-default/index.css'
 import App from './App'
 
 Vue.use(KiwiUI)
@@ -40,43 +40,44 @@ import '@codepan/kiwi-ui/lib/theme-default/button.css' // 引入Button组件的�
 ```
 
 极力不推荐上面的写法，下面讲解使用插件的方式按需引入
-1. 安装插件
 
-  首先，安装babel-plugin-component
-  ```shell
-  yarn add babel-plugin-component -D
-  ```
+1. 安装插件
+  
+    首先，安装babel-plugin-component
+    ```shell
+    yarn add babel-plugin-component -D
+    ```
 2. 配置插件
 
-  然后，在.babelrc修改代码如下：
-  ```js
-  {
-    "presets": [["es2015", { "modules": false }]],
-    "plugins": [
-      [
-        "component",
-        {
-          "libraryName": "kiwi-ui",
-          "styleLibraryName": "theme-default"
-        }
+    然后，在.babelrc修改代码如下：
+    ```js
+    {
+      "presets": [["es2015", { "modules": false }]],
+      "plugins": [
+        [
+          "component",
+          {
+            "libraryName": "kiwi-ui",
+            "styleLibraryName": "theme-default"
+          }
+        ]
       ]
-    ]
-  }
-  ```
+    }
+    ```
 3. 按需引入
 
-  最后，在需要引入组件的文件中，按照如下方式引入即可，以在main.js文件中引入为例：
-  ```js
-  import Vue from 'vue'
-  import { Button } from '@codepan/kiwi-ui'
-  import App from './App'
+    最后，在需要引入组件的文件中，按照如下方式引入即可，以在main.js文件中引入为例：
+    ```js
+    import Vue from 'vue'
+    import { Button } from '@codepan/kiwi-ui'
+    import App from './App'
 
-  Vue.use(Button) // 推荐这种方式，因为少写点代码，是不是理由很充分呢
-  // Vue.component(Button.name, Button) // 这种也可以
+    Vue.use(Button) // 推荐这种方式，因为少写点代码，是不是理由很充分呢
+    // Vue.component(Button.name, Button) // 这种也可以
 
-  new Vue({
-    el: '#app',
-    render: h => h(App)
-  })
-  ```
+    new Vue({
+      el: '#app',
+      render: h => h(App)
+    })
+    ```
 

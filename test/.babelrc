@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    [
+      "component",
+      {
+        "libraryName": "@codepan/kiwi-ui",
+        "styleLibrary": {
+          "name": "theme-default",
+          "base": false
+        }
+      }
+    ]
+  ]
+}

@@ -135,7 +135,11 @@ const KiwiUIComponents = {
   IndexGroup,
   IndexItem,
   Spinner,
-  Uploader
+  Uploader,
+  Dialog,
+  Loading,
+  Toast,
+  Mask
 }
 
 import Gesture from '~src/directive/gesture'
