@@ -26,8 +26,12 @@
 </template>
 
 <script>
+  import { gesture } from '~src/directives'
   export default {
-    name: 'kwCarousel',
+    name: 'kw-carousel',
+    directives: {
+      gesture
+    },
     data () {
       return {
         carouselWidth: this.width,

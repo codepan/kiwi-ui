@@ -6,6 +6,6 @@
 
 <script>
   export default {
-    name: 'kwCarouselItem'
+    name: 'kw-carousel-item'
   }
 </script>

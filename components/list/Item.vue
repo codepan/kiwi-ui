@@ -51,7 +51,13 @@
       </div>
     </div>
     <div class="kw-item-options" ref="itemOptionsRef" v-if="slidable && options && options.length > 0">
-      <button class="button-option" v-for="option in options" :style="option.style" @click="handleOptionClick(option)">{{option.text}}</button>
+      <button
+        class="button-option"
+        v-for="(option, index) in options"
+        :key="index"
+        :style="option.style"
+        @click="handleOptionClick(option)">
+        {{option.text}}</button>
     </div>
   </li>
 </template>

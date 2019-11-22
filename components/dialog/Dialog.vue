@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
   import defaultOptions from './default-options'
   export default {
     data () {

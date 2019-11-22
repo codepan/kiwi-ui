@@ -1,5 +1,6 @@
 import Previewer from './Previewer'
 import { type as typeUtil } from '~src/utils'
+
 let previewer = null
 
 Previewer.install = Vue => {

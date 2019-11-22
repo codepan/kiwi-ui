@@ -46,8 +46,12 @@
   // import image2 from './shuijiao.jpg'
   import fileUpload from './file-upload'
   import { type as typeUtil } from '~src/utils'
+  import { gesture } from '~src/directives'
   export default {
     name: 'kw-uploader',
+    directives: {
+      gesture
+    },
     data () {
       return {
         files: [],

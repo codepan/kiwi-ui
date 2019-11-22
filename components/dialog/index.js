@@ -1,6 +1,7 @@
 import DialogComponent from './Dialog'
 import defaultOptions from './default-options'
 import { type as typeUtil } from '~src/utils'
+import Mask from '../mask'
 let Dialog
 let dialog
 
@@ -22,10 +23,8 @@ export default {
           title
         }
       }
-      console.log(options)
       options = {...defaultOptions, ...options}
 
-      console.log(options)
       let dialog = createInstance()
       dialog.setOptions(options)
 
@@ -82,6 +81,8 @@ export default {
         title
       })
     }
+
+    Vue.use(Mask)
     Vue.prototype.$dialog = $dialog
   }
 }

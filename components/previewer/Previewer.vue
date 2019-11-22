@@ -25,8 +25,15 @@
 </template>
 <script>
 import PreviewerItem from './PreviewerItem'
+import { gesture } from '~src/directives'
 export default {
   name: 'kw-previewer',
+  components: {
+    [PreviewerItem.name]: PreviewerItem
+  },
+  directives: {
+    gesture
+  },
   data () {
     return {
       visible: this.value,
@@ -68,9 +75,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  components: {
-    [PreviewerItem.name]: PreviewerItem
   },
   watch: {
     visible (val) {
@@ -213,17 +217,19 @@ export default {
   z-index: 999;
   background: #000;
   &-list {
-    height: 100%;
     display: flex;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
     .kw-previewer-item {
       flex: 1;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      &-image {
-
-      }
+      margin: 0;
+      padding: 0;
     }
   }
   &-indicator {
@@ -237,9 +243,6 @@ export default {
     }
     .indicator-divider {
       margin: 0 4px;
-    }
-    .indicator-count {
-
     }
     &.indicator-position-bottom {
       bottom: 20px;

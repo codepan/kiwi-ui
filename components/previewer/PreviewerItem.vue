@@ -9,8 +9,12 @@
   </li>
 </template>
 <script>
+import { gesture } from '~src/directives'
 export default {
   name: 'kw-previewer-item',
+  directives: {
+    gesture
+  },
   data () {
     return {
       imageSizeStyle: {},

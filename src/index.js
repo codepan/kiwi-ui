@@ -1,5 +1,3 @@
-import './styles/color.scss' // 用作换肤时背景色，边框色，文字色的基础class，使用sass-resources-loader引入的话，会重复加载多次，此方式引入只会加载一次，故在此引入
-
 /**** 基础 ****/
 import Button from '../components/button'
 import ButtonGroup from '../components/button-group'
@@ -135,14 +133,8 @@ const KiwiUIComponents = {
   IndexGroup,
   IndexItem,
   Spinner,
-  Uploader,
-  Dialog,
-  Loading,
-  Toast,
-  Mask
+  Uploader
 }
-
-import Gesture from '~src/directive/gesture'
 
 const install = Vue => {
   Object.keys(KiwiUIComponents).forEach(key => {
@@ -154,7 +146,6 @@ const install = Vue => {
   Vue.use(Loading)
   Vue.use(Toast)
   Vue.use(Mask)
-  Vue.use(Gesture)
   Vue.use(Previewer)
 }
 
