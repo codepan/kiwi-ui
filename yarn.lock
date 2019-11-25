@@ -674,18 +674,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@codepan/kiwi-ui@^0.0.1-3":
-  version "0.0.1-3"
-  resolved "http://artifactory.intra.xiaojukeji.com:80/artifactory/api/npm/npm/@codepan/kiwi-ui/download/@codepan/kiwi-ui-0.0.1-3.tgz#7b8312ea2d64ffb19a4dcf28b1a3009f9610f906"
-  integrity sha1-e4MS6i1k/7GaTc8osaMAn5YQ+QY=
-
-"@codepan/kiwi-ui@^0.0.1-5":
-  version "0.0.1-5"
-  resolved "https://registry.yarnpkg.com/@codepan/kiwi-ui/-/kiwi-ui-0.0.1-5.tgz#b144b91e641032d29b9df0b3b181cd970743964d"
-  integrity sha512-u2PU4d51C39CtIwS4Cga9oIcv1rbrgKc9HKCsS0tnXN/drlCRDzCEjLE+Tx2KjofFpPI+8Ld5T4k64fWKjXJfg==
-  dependencies:
-    "@codepan/kiwi-ui" "^0.0.1-3"
-
 "@types/anymatch@*":
   version "1.3.1"
   resolved "http://artifactory.intra.xiaojukeji.com:80/artifactory/api/npm/npm/@types/anymatch/download/@types/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"

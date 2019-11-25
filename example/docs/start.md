@@ -50,15 +50,18 @@ import '@codepan/kiwi-ui/lib/theme-default/button.css' // 引入Button组件的�
 2. 配置插件
 
     然后，在.babelrc修改代码如下：
-    ```js
+    ```json
     {
       "presets": [["es2015", { "modules": false }]],
       "plugins": [
         [
           "component",
           {
-            "libraryName": "kiwi-ui",
-            "styleLibraryName": "theme-default"
+            "libraryName": "@codepan/kiwi-ui",
+            "styleLibrary": {
+              "name": "theme-default",
+              "base": false
+            }
           }
         ]
       ]

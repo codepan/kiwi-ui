@@ -13,7 +13,7 @@ import Vue from 'vue'
 
 // 全部引入
 import KiwiUI from '@codepan/kiwi-ui'
-import '@codepan/kiwi-ui/lib/style.css'
+import '@codepan/kiwi-ui/lib/theme-default/index.css'
 Vue.use(KiwiUI)
 
 // 按需引入

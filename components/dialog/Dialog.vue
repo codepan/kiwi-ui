@@ -1,6 +1,6 @@
 <template>
   <div class="kw-dialog">
-    <header class="kw-dialog-header">{{title}}</header>
+    <header class="kw-dialog-header" v-if="title">{{title}}</header>
     <main class="kw-dialog-body">
       <div class="kw-dialog-body-prompt" v-if="type === 'prompt'">
         <div class="prompt-input-wrapper" :class="{'label-top': inputLabel && inputLabelPosition === 'top', 'label-left': inputLabel && inputLabelPosition === 'left'}">

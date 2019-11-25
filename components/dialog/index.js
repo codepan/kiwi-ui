@@ -44,7 +44,7 @@ export default {
       }
     }
 
-    $dialog.alert = (message, title = '提示', options) => {
+    $dialog.alert = (message, title, options) => {
       if (typeUtil.isObject(title)) {
         options = title
         title = ''

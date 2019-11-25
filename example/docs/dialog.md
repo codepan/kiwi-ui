@@ -4,7 +4,7 @@
 ---
 ## 示例
 ### 基本用法
-直接给$dialog方法传入字符串，第一个参数为显示内容，第二个参数为标题
+直接给$dialog方法传入字符串，第一个参数为显示内容message，第二个参数为标题title
 ```html
 <template>
   <kw-button @click="openDialog">显示dialog</kw-button>
@@ -65,10 +65,10 @@ $dialog还具有alert()、confirm()、prompt()三个方法，它们都返回一�
   export default {
     methods: {
       openConfirmDialog () {
-        this.$dialog.confirm('sinoiovUI框架你喜欢吗？', '调查').then(() => {
-          alert('点击了确定，感谢')
+        this.$dialog.confirm('kiwi-ui框架你喜欢吗？', '调查').then(() => {
+          this.$toast('点击了确定，感谢')
         }).catch(() => {
-          alert('点击了取消，我会更加努力的')
+          this.$toast('点击了取消，我会更加努力的')
         })
       }
     }
@@ -109,7 +109,7 @@ inputType默认为text, 可以设置为textarea以输入更多的内容
 ---|---|---|---|---
 type|对话框类型|string|alert,confirm,prompt|alert
 message|对话框内容|string|-|-
-title|对话框标题|string|-|提示
+title|对话框标题|string|-|-
 confirmButtonText|对话框确定按钮文字|string|-|确定
 cancelButtonText|对话框取消按钮文字|string|-|取消
 inputType|输入框类型，仅对prompt对话框有效|string|text,textarea|text

@@ -1,5 +1,5 @@
 export default {
-  type: '',
+  type: 'alert',
   title: '',
   message: '',
   inputType: 'text',
