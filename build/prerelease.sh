@@ -8,13 +8,9 @@ else
 fi
 
 # build
-npm version $type -m '[publish] '$type': @%s'
+npm version $type -m '[prerelease] '$type': @%s'
 npm run build
 
-# commit
-git add .
-git commit -m 'build'
-
 # publish
-git push origin -u dev
 npm publish
+git push

@@ -2,11 +2,15 @@
 
 if [ -z "$1" ]
 then
-  type='patch'
+  type='release'
 else
   type=$1
 fi
 
-git add . && git commit -m 'build'
+# build
+npm version $type -m '[release] '$type': @%s'
+npm run build
 
-npm version $type -m '[publish] '$type': @%s' && node build.js && npm publish && git push origin master:master
+# publish
+npm publish
+git push
