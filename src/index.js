@@ -154,5 +154,10 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
+export {
+  Loading,
+  Toast
+}
+
 // 把 install方法添加到 KiwiUIComponents 中
 export default {install, ...KiwiUIComponents}

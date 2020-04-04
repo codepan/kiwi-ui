@@ -5,57 +5,56 @@ import { type as typeUtil } from '~src/utils'
 
 const Loading = Vue.extend(LoadingComponent)
 let loading
+
+// 实现Loading的关闭方法
+Loading.prototype.close = () => {
+  this.close()
+}
+
+Loading.prototype._setOptions = options => {
+  let userOptions = null
+  if (typeUtil.isString(options) || typeUtil.isNumber(options)) {
+    userOptions = {
+      text: options
+    }
+  }
+
+  if (typeUtil.isObject(options)) {
+    let { spinner } = options
+
+    if (spinner) {
+      if (typeUtil.isString(spinner)) {
+        userOptions = {
+          ...options,
+          spinner: {
+            ...defaultOptions.spinner,
+            type: spinner,
+          }
+        }
+      }
+
+      if (typeUtil.isObject(spinner)) {
+        userOptions = {
+          ...options,
+          spinner: {...defaultOptions.spinner, ...spinner}
+        }
+      }
+    } else {
+      userOptions = {
+        ...options
+      }
+    }
+  }
+
+  options = {...defaultOptions, ...userOptions}
+
+  Object.entries(options).forEach(([key, value]) => {
+    loading[key] = value
+  })
+}
+
 export default {
   install (Vue) {
-    // 实现Loading的关闭方法
-    Loading.prototype.close = () => {
-      this.close()
-    }
-
-    Loading.prototype.setOptions = options => {
-      console.log(options)
-      let userOptions = null
-      if (typeUtil.isString(options) || typeUtil.isNumber(options)) {
-        userOptions = {
-          text: options
-        }
-      }
-
-      if (typeUtil.isObject(options)) {
-        let { spinner } = options
-
-        if (spinner) {
-          if (typeUtil.isString(spinner)) {
-            userOptions = {
-              ...options,
-              spinner: {
-                ...defaultOptions.spinner,
-                type: spinner,
-              }
-            }
-          }
-
-          if (typeUtil.isObject(spinner)) {
-            userOptions = {
-              ...options,
-              spinner: {...defaultOptions.spinner, ...spinner}
-            }
-          }
-        } else {
-          userOptions = {
-            ...options
-          }
-        }
-      }
-
-      options = {...defaultOptions, ...userOptions}
-
-      console.log(options)
-      Object.entries(options).forEach(([key, value]) => {
-        loading[key] = value
-      })
-    }
-
     const $loading = options => {
       this.open(options)
       return loading
@@ -73,7 +72,7 @@ export default {
       })
     }
 
-    loading.setOptions(options)
+    loading._setOptions(options)
     // 将Loading的DOM挂载到body上
     document.body.appendChild(loading.$el)
   },

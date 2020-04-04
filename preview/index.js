@@ -10,7 +10,6 @@ import KiwiUI from '../src/index.js'
 Vue.use(KiwiUI)
 
 Vue.component(demoBlock.name, demoBlock)
-
 new Vue({
   el: '#preview',
   router,

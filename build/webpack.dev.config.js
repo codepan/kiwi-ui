@@ -21,12 +21,7 @@ module.exports = merge(webpackBaseConfig, {
         use: [
           'style-loader',
           'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: [require('autoprefixer')()]
-            }
-          },
+          'postcss-loader',
           'sass-loader',
           {
             loader: 'sass-resources-loader',

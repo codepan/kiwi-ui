@@ -39,6 +39,7 @@
         refreshText: this.refreshCreateText,
         loadmoreText: this.loadmoreCreateText,
         translateHandler: {
+          startX: 0,
           startY: 0,
           endY: 0,
           currentY: 0,
@@ -154,14 +155,20 @@
         return this.scrollEventTarget.scrollTop + this.scrollEventTarget.clientHeight >= this.scrollEventTarget.scrollHeight
       },
       handleTouchStart (event) {
-        let touch = event.touches[0]
-        this.translateHandler.startY = touch.clientY
+        const { clientX, clientY } = event.touches[0]
+        this.translateHandler.startX = clientX
+        this.translateHandler.startY = clientY
       },
       handleTouchMove (event) {
-        let touch = event.touches[0]
-        this.translateHandler.currentY = touch.clientY
+        const { clientX, clientY } = event.touches[0]
+        const { startX, startY } = this.translateHandler
+        // 若垂直位移小于水平位移，则不触发
+        if (Math.abs(clientY - startY) < Math.abs(clientX - startX)) {
+          return
+        }
+        this.translateHandler.currentY = clientY
 
-        this.translateHandler.moveDistance = this.translateHandler.currentY - this.translateHandler.startY
+        this.translateHandler.moveDistance = clientY - startY
 
         this.translateHandler.direction = this.translateHandler.moveDistance > 0 ? 'down' : 'up'
 
@@ -174,9 +181,13 @@
         }
       },
       handleTouchEnd (event) {
-        let touch = event.changedTouches[0]
-        this.translateHandler.endY = touch.clientY
-
+        const { clientX, clientY } = event.changedTouches[0]
+        const { startX, startY } = this.translateHandler
+        // 若垂直位移小于水平位移，则不触发
+        if (Math.abs(clientY - startY) < Math.abs(clientX - startX)) {
+          return
+        }
+        this.translateHandler.endY = clientY
         if (this.translateHandler.direction === 'down') {
           if (this.refreshStatus === this.STATUS.CREATE) {
             this.translate(0)

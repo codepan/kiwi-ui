@@ -9,8 +9,12 @@
 
 <script>
   import defaultOptions from './default-options'
+  import kwSpinner from '../spinner'
   export default {
     name: 'kwLoading',
+    components: {
+      kwSpinner
+    },
     data () {
       return {
         ...defaultOptions,
