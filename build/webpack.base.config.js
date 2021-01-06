@@ -36,7 +36,7 @@ module.exports = {
           options: {
             limit: 10000,
             name: 'img/[hash:8].[ext]',
-            publicPath: '//www.codepan.cc/kiwi-ui/'
+            publicPath: '//www.codepan.top/kiwi-ui/'
             // publicPath: '../'
           }
         },

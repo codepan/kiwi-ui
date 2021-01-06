@@ -35,7 +35,7 @@ export default {
       if (href.includes('index.html')) {
         return `${href.split('index.html')[0]}/preview.html#${this.$route.path}`
       }
-      if (host.includes('codepan.cc')) {
+      if (host.includes('codepan.top')) {
         return origin + pathname + `preview.html#${this.$route.path}`
       }
 
