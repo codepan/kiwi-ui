@@ -109,6 +109,11 @@
         if (val >= 0 && val <= this.carouselItemCount - 1) {
           this.$emit('change', val)
         }
+      },
+      images (val) {
+        if (val && val.length) {
+          this.carouselItemCount = val.length
+        }
       }
     },
     methods: {
@@ -271,6 +276,9 @@
           this.$refs.carouselListRef.insertBefore(lastItemNode, itemsNode[0])
         }
       })
+    },
+    beforeDestroy () {
+      this.autoplay && this.clearAutoPlay()
     }
   }
 </script>
