@@ -6,19 +6,20 @@
     <div class="kw-tab-links" ref="svTabLinksRef" :class="[tabLinksClass, linksClass]" :style="[{'background': tabLinksBgColor}, tabLinksBorderColor]">
       <template v-for="(tab, $index) in tabLinks">
         <button
+          :key="$index"
           class="kw-tab-link"
-          :class="[{'is-active': tab.value === activeTabValue}, tab.value === activeTabValue ? activeClass : '', linkClass]"
+          :class="[{'is-active': tab.index === activeTabIndex}, tab.index === activeTabIndex ? activeClass : '', linkClass]"
           @click="handleTabClick(tab)"
           ref="svTabLinkRef">
           <div v-if="tab.htmlIcon" class="tab-link-icon" v-html="tab.htmlIcon"></div>
           <template v-else-if="tab.icon">
-            <kw-icon :icon="tab.icon" :size="iconSize" :color="tab.value === activeTabValue ? activeColor : color"></kw-icon>
+            <kw-icon :icon="tab.icon" :size="iconSize" :color="tab.index === activeTabIndex ? activeColor : color"></kw-icon>
           </template>
 
           <div
             class="tab-link-text"
             :class="{'tab-link-text--small': fontSize === 'small', 'tab-link-text--large': fontSize === 'large'}"
-            :style="{'font-size': linkTextFontSize, color: tab.value === activeTabValue ? tabLinksActiveColor : tabLinksColor}" v-html="tab.htmlTitle ||tab.title"></div>
+            :style="{'font-size': linkTextFontSize, color: tab.index === activeTabIndex ? tabLinksActiveColor : tabLinksColor}" v-html="tab.htmlTitle ||tab.title"></div>
         </button>
       </template>
       <div class="kw-tab-link-highlight" :style="linkHighlightStyle" v-if="stripe"></div>
@@ -91,7 +92,6 @@
     data () {
       return {
         hasIcon: false,
-        activeTabValue: this.value || this.active,
         activeTabIndex: 0,
         tabLinks: [],
         linkHighlightStyle: {
@@ -111,10 +111,13 @@
       }
     },
     watch: {
+      value (val) {
+        const currentTab = this.tabLinks.find(tab => tab.value === val)
+        this.activeTabIndex = currentTab.index
+      },
       activeTabIndex (val) {
         this.repaintTabs()
-        this.activeTabValue = this.tabLinks[val].value
-        this.$emit('input', this.activeTabValue)
+        this.$emit('input', this.tabLinks[val].value)
       }
     },
     computed: {
@@ -198,12 +201,20 @@
     },
     methods: {
       handleTabClick (tab) {
+        if (this.activeTabIndex !== tab.index) {
+          this.$emit('change', tab)
+        }
         this.activeTabIndex = tab.index
         let translateX = -tab.index * this.tabPanelWidth
         this.translateX = translateX
         this.slideLink(tab.index)
         this.slide(translateX)
+        /**
+         * 该事件已废弃，请查阅文档选择使用click事件或change事件
+         * @deprecated
+         */
         this.$emit('tab-active', tab)
+        this.$emit('click', tab)
       },
       preventSlide () {
         this.tabPanelsStyle.transform = `translateX(${this.translateX}px)`
@@ -218,12 +229,11 @@
       },
       repaintTabs () {
         // let tabs = this.$children.filter(item => item.$vnode.tag.includes('kwTab'))
-        if (this.value) {
-          this.activeTabValue = this.value
-          this.activeTabIndex = this.tabLinks.filter(tab => {
-            return tab.value === this.value
-          })[0].index
-        }
+        // if (this.value) {
+        //   this.activeTabIndex = this.tabLinks.filter(tab => {
+        //     return tab.value === this.value
+        //   })[0].index
+        // }
 
         this.$nextTick(() => {
           this.slideLink(this.activeTabIndex)
@@ -249,11 +259,9 @@
           this.containerClass && tab.$el.classList.add(this.containerClass)
         })
 
-        if (this.value) {
-          this.activeTabValue = this.value
-          this.activeTabIndex = this.tabLinks.filter(tab => {
-            return tab.value === this.value
-          })[0].index
+        const activeTabValue = this.value || this.active
+        if (activeTabValue) {
+          this.activeTabIndex = this.tabLinks.findIndex(tab => tab.value === activeTabValue)
         }
 
 
@@ -319,22 +327,25 @@
             (this.direction === 'right' && this.activeTabIndex === 0)) {
             this.preventSlide()
           } else {
+            let activeTabIndex = this.activeTabIndex
             let transitionDuration
             if (Math.abs(slideDistance) < this.threshold) {
               transitionDuration = 0.3
             } else {
               if (this.direction === 'left') {
                 this.translateX -= this.tabPanelWidth
-                this.activeTabIndex += 1
+                 activeTabIndex += 1
               }
               if (this.direction === 'right') {
                 this.translateX += this.tabPanelWidth
-                this.activeTabIndex -= 1
+                activeTabIndex -= 1
               }
               transitionDuration = 0.6
             }
-            this.slideLink(this.activeTabIndex)
+            this.activeTabIndex = activeTabIndex
+            this.slideLink(activeTabIndex)
             this.slide(this.translateX, transitionDuration)
+            this.$emit('change', this.tabLinks[activeTabIndex])
           }
         })
       },

@@ -26,7 +26,7 @@ const deployer = new Deployer({
     projectName: 'kiwi-ui',
     rootPath: '/root/webroot',
     connectOptions: {
-      host: '47.108.95.110',
+      host: '1.13.5.52',
       user: 'root'
     }
   }

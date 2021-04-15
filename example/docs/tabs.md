@@ -163,7 +163,8 @@ Tab组件有两个具名Slot，分别是icon和title，各自可以指定icon和
 #### Props
 名称 |描述|类型|可选值|默认值
 ---|---|---|---|---
-active|默认激活的Tab,取值为子组件Tab组件的value属性值|string,number|-|0
+active(`已废弃`，请使用v-model代替)|默认激活的Tab,取值为子组件Tab组件的value属性值|string,number|-|0
+v-model|绑定当前激活的Tab，取值为子组件Tab组件的value属性值，如果没有指定value，默认为index|string,number|-|0
 position|Tab的位置|string|top,bottom|bottom
 stripe|Tab是否有条纹|boolean|true,false|false
 slidable|是否可以滑动切换|boolean|true,false|false
@@ -183,7 +184,9 @@ activeClass|自定义被激活的link的Class|string|-|-
 #### Events
 名称|描述|参数
 ---|---|---
-tab-active|当某个Tab签被激活时触发|当前被激活的Tab实例，有value,title,index三个属性
+tab-active(`已废弃`，请使用click或change事件)|当某个Tab签被激活时触发|当前被激活的Tab实例，有value,title,index三个属性
+click|当某个Tab签被点击时触发|当前被激活的Tab实例，有value,title,index三个属性
+change|当激活的Tab签改变时触发|当前被激活的Tab实例，有value,title,index三个属性
 ### Tab
 #### Props
 名称 |描述|类型|可选值|默认值

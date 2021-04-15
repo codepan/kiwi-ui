@@ -7,8 +7,12 @@ import KiwiUI from '../src/index.js'
 */
 
 /* 开发环境按需测试 */
-// import Dialog from '../../components/dialog'
-// Vue.use(Dialog)
+import Tabs from '../../components/tabs'
+import Tab from '../../components/tab'
+import Button from '../../components/button'
+Vue.use(Tabs)
+Vue.use(Tab)
+Vue.use(Button)
 
 /*
 构建包全量测试
@@ -25,8 +29,8 @@ import '../lib/theme-default/index.css'
 // Vue.use(KiwiUI)
 
 // npm包按需测试
-import { Button } from '@codepan/kiwi-ui'
-Vue.use(Button)
+// import { Button } from '@codepan/kiwi-ui'
+// Vue.use(Button)
 new Vue({
   el: '#app',
   render: h => h(App)
